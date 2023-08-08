@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 
 /// DTO for a UIAlertAction
@@ -16,8 +15,7 @@ class NativeIosDialogButton {
   /// If this callback is null, then the button is disabled
   final VoidCallback? onPressed;
 
-  NativeIosDialogButton(
-      {required this.text, required this.style, this.onPressed});
+  NativeIosDialogButton({required this.text, required this.style, this.onPressed});
 
   /// Get whetever the button is enabled or not
   bool get enabled => onPressed != null;
@@ -68,10 +66,7 @@ class NativeIosDialog {
   final List<NativeIosDialogButton> actions;
 
   NativeIosDialog(
-      { this.title,
-       this.message,
-      this.style = NativeIosDialogStyle.alert,
-      required this.actions});
+      {this.title, this.message, this.style = NativeIosDialogStyle.alert, required this.actions});
 
   /// Shows the native iOS Dialog and calls the specific `onPressed` handler
   ///
@@ -91,7 +86,7 @@ class NativeIosDialog {
     if (result == -1) return;
     var action = actions[result];
     if (!action.enabled || action.onPressed == null) return;
-    action.onPressed!();
+    return action.onPressed!();
   }
 }
 
